@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
 @TeleOp
-public class TankDrive extends OpMode
+public class oldTankDrive extends OpMode
 {
     private double powerLX, powerLY, powerRX, powerRY;
     private DcMotor FR, FL, BR, BL;
@@ -40,41 +40,28 @@ public class TankDrive extends OpMode
         powerRX = gamepad1.right_stick_x;
         powerRY = gamepad1.right_stick_y;
 
-        if(powerLX < -0.3 || powerLX > 0.3)
-        {
-            FL.setPower(powerLX);
-            BL.setPower(powerLX);
-        } else {
-            FL.setPower(0);
-            BL.setPower(0);
-        }
-
-        if(powerLY < -0.3 || powerLY > 0.3)
+        if(powerLY > 0.07 || powerLY < -0.07)
         {
             FL.setPower(powerLY);
             BL.setPower(powerLY);
-        } else {
+        } else
+        {
             FL.setPower(0);
             BL.setPower(0);
         }
 
-        if(powerRX < -0.3 || powerRX > 0.3)
-        {
-            FR.setPower(powerRX);
-            BR.setPower(powerRX);
-        } else {
-            FR.setPower(0);
-            BR.setPower(0);
-        }
-
-        if(powerRY < -0.3 || powerRY > 0.3)
+        if(powerRY > 0.07 || powerRY < -0.07)
         {
             FR.setPower(powerRY);
             BR.setPower(powerRY);
-        } else {
+        } else
+        {
             FR.setPower(0);
             BR.setPower(0);
         }
-
     }
 }
+
+
+
+
