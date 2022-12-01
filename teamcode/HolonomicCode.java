@@ -7,24 +7,18 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @TeleOp
 public class HolonomicCode extends OpMode
 {
-    public DcMotor FR, FL, BR, BL;
-    private double powerRY, powerRX, powerLX, powerLY, robotAngle, PowerMultiplier, fl, br, fr, bl;
+    public DcMotor BR, BL;
+    private double powerRY, powerRX, powerLX, powerLY, robotAngle, PowerMultiplier, br, bl;
 
     @Override
     public void init()
     {
-        FR = hardwareMap.get(DcMotor.class, "FR");
-        FL = hardwareMap.get(DcMotor.class, "FL");
         BR = hardwareMap.get(DcMotor.class, "BR");
         BL = hardwareMap.get(DcMotor.class, "BL");
 
-        FR.setDirection(DcMotorSimple.Direction.FORWARD);
-        FL.setDirection(DcMotorSimple.Direction.REVERSE);
         BR.setDirection(DcMotorSimple.Direction.FORWARD);
         BL.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        FR.setPower(0);
-        FL.setPower(0);
         BR.setPower(0);
         BL.setPower(0);
     }
@@ -47,13 +41,9 @@ public class HolonomicCode extends OpMode
 
         if (gamepad1.left_stick_x != 0)
         {
-            fl = powerRY;
             br = -powerRY;
             bl = powerRY;
-            fr = -powerRY;
 
-            FR.setPower(fr);
-            FL.setPower(fl);
             BR.setPower(br);
             BL.setPower(bl);
         }
@@ -69,36 +59,24 @@ public class HolonomicCode extends OpMode
             {
                 if (powerRY <= 1 && powerRX == 0)
                 {
-                    fl = powerRY;
                     br = powerRY;
                     bl = powerRY;
-                    fr = powerRY;
 
-                    FR.setPower(fr);
-                    FL.setPower(fl);
                     BR.setPower(br);
                     BL.setPower(bl);
                 }
                 else if (powerRX <= 1 && powerRY == 0)
                 {
-                    fl = powerRX;
                     br= powerRX;
                     bl = -powerRX;
-                    fr = -powerRX;
 
-                    FR.setPower(fr);
-                    FL.setPower(fl);
                     BR.setPower(br);
                     BL.setPower(bl);
                 }
             }
-            fl = (PowerMultiplier*(Math.sin(robotAngle+(Math.PI/4))));
             br = (PowerMultiplier*(Math.sin(robotAngle+(Math.PI/4))));
             bl = (PowerMultiplier*-1*Math.sin(robotAngle-(Math.PI/4)));
-            fr = (PowerMultiplier*-1*Math.sin(robotAngle-(Math.PI/4)));
 
-            FR.setPower(fr);
-            FL.setPower(fl);
             BR.setPower(br);
             BL.setPower(bl);
         }
